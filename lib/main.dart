@@ -1,22 +1,19 @@
+import 'package:estoque_hotel/widgets/home_page.dart';
 import 'package:flutter/material.dart';
-import 'control/autenticacao.dart';
-import 'view/telaLogin.dart';
+
 
 void main() {
-  final autenticacao = Autenticacao();
-  runApp(App(autenticacao));
+  runApp(const App());
 }
 
 class App extends StatelessWidget {
-  final Autenticacao controlador;
-
-  App(this.controlador);
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TelaLogin(controlador: controlador),
+      home: const HomePage(),
     );
   }
 }

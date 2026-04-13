@@ -1,6 +1,6 @@
-import 'package:estoque_hotel/widgets/home_page.dart';
-import 'package:flutter/material.dart';
+import 'package:estoque_hotel/widgets/estoque_produtos.dart';
 
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const App());
@@ -13,7 +13,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: const EstoquePage(),
     );
   }
 }

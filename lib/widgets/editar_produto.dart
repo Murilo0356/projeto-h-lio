@@ -1,15 +1,8 @@
 import 'package:estoque_hotel/widgets/estoque_produtos.dart';
 import 'package:flutter/material.dart';
 
-class MovimentacaoPage extends StatefulWidget {
-  const MovimentacaoPage({super.key});
-
-  @override
-  State<MovimentacaoPage> createState() => _MovimentacaoPageState();
-}
-
-class _MovimentacaoPageState extends State<MovimentacaoPage> {
-  String tipo = "Entrada";
+class EditarProdutoPage extends StatelessWidget {
+  const EditarProdutoPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +17,18 @@ class _MovimentacaoPageState extends State<MovimentacaoPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // HEADER
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    "Movimentação de Estoque",
+                    "Editar Produto",
                     style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                   ),
 
                   OutlinedButton.icon(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pop(context); // 👈 volta
                     },
                     icon: const Icon(Icons.arrow_back),
                     label: const Text("Voltar"),
@@ -44,6 +38,7 @@ class _MovimentacaoPageState extends State<MovimentacaoPage> {
 
               const SizedBox(height: 30),
 
+              // CARD
               Container(
                 padding: const EdgeInsets.all(25),
                 decoration: BoxDecoration(
@@ -53,10 +48,11 @@ class _MovimentacaoPageState extends State<MovimentacaoPage> {
 
                 child: Column(
                   children: [
+                    // NOME
                     const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "Produto",
+                        "Nome do produto",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -64,8 +60,8 @@ class _MovimentacaoPageState extends State<MovimentacaoPage> {
 
                     TextField(
                       decoration: InputDecoration(
-                        hintText: "Digite o nome do produto",
-                        prefixIcon: const Icon(Icons.inventory),
+                        hintText: "Ex: Shampoo",
+                        prefixIcon: const Icon(Icons.inventory_2),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -74,37 +70,7 @@ class _MovimentacaoPageState extends State<MovimentacaoPage> {
 
                     const SizedBox(height: 20),
 
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Tipo de movimentação",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-
-                    DropdownButtonFormField<String>(
-                      value: tipo,
-                      items: ["Entrada", "Saída"]
-                          .map(
-                            (e) => DropdownMenuItem(value: e, child: Text(e)),
-                          )
-                          .toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          tipo = value!;
-                        });
-                      },
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.swap_horiz),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-
-                    const SizedBox(height: 20),
-
+                    // QUANTIDADE
                     const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -117,8 +83,30 @@ class _MovimentacaoPageState extends State<MovimentacaoPage> {
                     TextField(
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        hintText: "Ex: 10",
+                        hintText: "Ex: 120",
                         prefixIcon: const Icon(Icons.numbers),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    // CATEGORIA
+                    const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Categoria",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: "Ex: Limpeza",
+                        prefixIcon: const Icon(Icons.category),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -127,6 +115,7 @@ class _MovimentacaoPageState extends State<MovimentacaoPage> {
 
                     const SizedBox(height: 30),
 
+                    // BOTÕES
                     Row(
                       children: [
                         Expanded(
@@ -137,6 +126,7 @@ class _MovimentacaoPageState extends State<MovimentacaoPage> {
                               padding: const EdgeInsets.symmetric(vertical: 18),
                             ),
                             onPressed: () {
+                              // 👇 volta direto pro estoque
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
@@ -144,8 +134,8 @@ class _MovimentacaoPageState extends State<MovimentacaoPage> {
                                 ),
                               );
                             },
-                            icon: const Icon(Icons.check),
-                            label: const Text("Confirmar"),
+                            icon: const Icon(Icons.save),
+                            label: const Text("Salvar"),
                           ),
                         ),
 
@@ -154,9 +144,9 @@ class _MovimentacaoPageState extends State<MovimentacaoPage> {
                         Expanded(
                           child: OutlinedButton.icon(
                             onPressed: () {
-                              Navigator.pop(context);
+                              Navigator.pop(context); // 👈 volta
                             },
-                            icon: const Icon(Icons.close),
+                            icon: const Icon(Icons.cancel),
                             label: const Text("Cancelar"),
                           ),
                         ),
